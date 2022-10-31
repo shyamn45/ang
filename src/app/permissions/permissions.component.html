@@ -1,0 +1,23 @@
+<div class="bodycontent">
+    <div class="card">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr >
+                <th>Sl.No</th>
+                <th>Module</th>
+                <th>Role</th>
+                <th>Permissions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let PermissionObj of Permissions;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{PermissionObj.Module}}</td>
+                <td>{{PermissionObj.Role}}</td>
+                <td><span *ngFor="let Privilege of PermissionObj.ChannelPartners[0].Privileges;let j = index">{{Privilege.PrivilegeName }}{{j === PermissionObj.ChannelPartners[0].Privileges.length - 1 ? '' : ', '}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+

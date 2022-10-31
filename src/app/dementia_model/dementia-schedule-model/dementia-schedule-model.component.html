@@ -1,0 +1,69 @@
+<div class="bodycontent">
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn anvayaaButton" id="viewAllCustomers" (click)="onAllCustomersClick()">View All Customers</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>CustomerID</th>
+                    <th>CustomerName</th>
+                    <th>Beneficiary Name</th>
+                    <th>Employee Name</th>
+                    <th>Schedule Date</th>
+                    <th>Visit Per Week</th>
+                    <th>Status </th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let scheduleData of AllScheduleDetails">
+                    <td>{{scheduleData.CustRecID}}</td>
+                    <td>{{scheduleData.CustomerDetails.Name}}</td>
+                    <td>{{scheduleData.CustomerDetails.Beneficiaries.Name}}</td>
+                    <td>{{scheduleData.employeeDetails.FirstName}}</td>
+                    <td>{{scheduleData.ScheduledDate*1000 |date:"dd-MMM-yyyy HH:MM a"}}</td>
+                    <td *ngIf="scheduleData.VisitConfiguration==undefined">
+                      --
+                    </td>
+                    <td *ngIf="scheduleData.VisitConfiguration!=undefined">
+                      {{scheduleData.VisitConfiguration.Count}}
+                    </td>
+                    <td>{{scheduleData.Status}}</td>
+                    <td><button type="button" class="btn anvayaaButton" data-bs-toggle="modal" data-bs-target="#updateVisitsModal" (click)="onUpadteClick(scheduleData)">Update</button></td>
+                    <!-- <td><button class="btn anvayaaButton" id="updateBtn" (click)="onUpadteClick(scheduleData)">UPDATE</button></td> -->
+                    <td><button class="btn anvayaaButton" id="assessmentBtn" (click)="onInitialAssessmentClick(scheduleData)" >InitialForm</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="updateVisitsModal" tabindex="-1" aria-labelledby="updateVisitsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateVisitsModalLabel">Update Visit Frequency</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <div><label for="recipient-name" class="col-form-label">Count</label></div>
+            <div class="form-group"><input  #count type="text" placeholder="Enter Count"  id="count" class="form-control" name="count"></div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn anvayaaButton" (click)="onCountUpdate(count.value)">UPDATE</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner type="ball-scale-multiple">loading...</ngx-spinner>

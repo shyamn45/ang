@@ -1,0 +1,851 @@
+<div class="container">
+    <div class=" text-center mt-5 ">
+        <h1>Insurance Form</h1>
+    </div>
+    <div class="row ">
+        <div class="col-lg-12 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="insuranceForm" (ngSubmit)="onInsurenceSubmit()" [formGroup]="insuranceForm">
+                            <div class="row">
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Relationship Manager <span
+                                                style="color:red;">*</span></label>
+                                        <select name="relationship_manager" class="form-control form-select"
+                                            formControlName="RelationshipManager" required="">
+                                            <option value="">Select</option>
+                                            <option value="Anindya Saha">Anindya Saha</option>
+                                            <option value="Atin Misra">Atin Misra</option>
+                                            <option value="Balajee K">Balajee K</option>
+                                            <option value="BV Prasad">BV Prasad</option>
+
+                                        </select>
+                                    </div>
+                                    <div
+                                        *ngIf='(this.insuranceForm.value["RelationshipManager"].dirty || this.insuranceForm.value["RelationshipManager"].touched ) && this.submitted==true'>
+                                        <p class="validationErrors validationcolor">*Please Select Relationship
+                                            Manager </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Business Sourced By <span style="color:red;">*</span>
+                                        </label>
+                                        <input type="text" name="BusinessSourcedBy" placeholder="BusinessSourcedBy"
+                                            formControlName="BusinessSourcedBy" class="form-control" maxlength="25">
+
+
+                                        <div class="row"
+                                            *ngIf=' (this.insuranceForm.controls["BusinessSourcedBy"].dirty || this.insuranceForm.controls["BusinessSourcedBy"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["BusinessSourcedBy"].value==""'>
+                                            <p class="validationcolor">*BusinessSourcedBy Mandatory</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Client Name <span style="color:red;">*</span></label>
+                                        <input type="text" name="client_name" required="" placeholder="ClientName"
+                                            formControlName="ClientName" class="form-control">
+                                        <div class="row validationcolor"
+                                            *ngIf='this.insuranceForm.controls["ClientName"].errors && this.submitted==true'>
+                                            *BusinessSourcedBy Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+
+                                    <div class="form-group">
+                                        <label for="title">Business Type <span style="color:red;">*</span> </label>
+                                        <select class="form-control form-select" formControlName="BusinessType">
+                                            <option value="">Select</option>
+                                            <option value="NEW">NEW</option>
+                                            <option value="RENEWAL">RENEWAL</option>
+                                            <option value="ROLLOVER">ROLLOVER</option>
+                                        </select>
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['BusinessType']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select BusinessType
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyIssuedDetails">
+                                    <div class="form-group">
+                                        <label for="title"> Is the policy issued? <span
+                                                style="color:red;">*</span></label>
+                                        <select class="form-control form-select" (change)="policyIssued($event)"
+                                            formControlName="IsThePolicyIssued" aria-label="Default select example">
+                                            <option value="">Select</option>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyIssuedDetails']['IsThePolicyIssued']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Select is policy is issued
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyIssuedDetails"
+                                    *ngIf="isNameSelected">
+                                    <div class="form-group">
+                                        <label for="title">Enter Policy Number <span style="color:red;">*</span></label>
+                                        <input type="text" formControlName='PolicyNumber' required=""
+                                            placeholder="Enter PolicyNumber" id="policy_no_text" class="form-control"
+                                            formControlName="PolicyNumber">
+
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyIssuedDetails']['PolicyNumber']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Enter Policy Number
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyIssuedDetails"
+                                    *ngIf="isNameSelected">
+                                    <div class="form-group" *ngIf="uploadtag">
+                                        <label for="title">Upload policy document </label>
+                                        <!-- <input (change)="onuploadtaxFile($event)" accept="image/*" type="file"
+                     `                       class=" form-control" data-buttontext="Select a File"> -->
+                                         <input type="file"  (change)="onuploadtaxFile($event)"  data-buttontext="Select a File">
+                                    </div>
+                                    <div class="row" *ngIf="file">
+                                    <div  class="col-md-6 col-6"   >
+                                        <button type="button" class="btn btn-default" (click)="fileView()"><img src="../../../assets/images/insurancePics/document (1).png" >File</button>
+                                        View
+                                        </div>
+                                     
+                                     <div class="col-md-6">
+                                        <div class="image-upload">
+                                            <label for="file-input">
+                                              <img src="../../../assets/images/insurancePics/edit-info.png" />
+                                            </label>
+                                          
+                                            <input id="file-input" type="file" (change)="onuploadtaxFile($event)" />
+                                          </div>
+                                          Edit
+
+                                         <!-- <input type="file" class="glyphicon glyphicon-upload" (change)="onuploadtaxFile($event)" data-buttontext="Select a File"> -->
+                                     </div>
+                                     </div>
+                                    
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyPremiumDetails">
+                                    <div class="form-group">
+                                        <label for="title">Is this policy premium? <span
+                                                style="color:red;">*</span></label>
+                                        <select name="is_this_policy_premium" id="is_this_policy_premium"
+                                            class="form-control form-select" (change)="policypremium($event)"
+                                            formControlName="IsThePolicyPremium">
+                                            <option value="">Select</option>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyPremiumDetails']['IsThePolicyPremium']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Enter Policy Number
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyPremiumDetails"
+                                    *ngIf="isPremiumSelected">
+                                    <div class="form-group">
+                                        <label for="title">Type of Transaction <span style="color:red;">*</span>
+                                        </label>
+                                        <select name="type_of_transaction" id="type_of_transaction"
+                                            class="form-control form-select" required=""
+                                            formControlName="TypeOfPremiumPolicyTransaction">
+                                            <option value="">Select</option>
+                                            <option value="Installment">Installment</option>
+                                            <option value="Extension">Extension</option>
+                                            <option value="Endorsement">Endorsement</option>
+                                            <option value="Cancellation">Cancellation</option>
+                                        </select>
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyPremiumDetails']['TypeOfPremiumPolicyTransaction']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Enter Policy Number
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyPremiumDetails"
+                                    *ngIf="isPremiumSelected">
+                                    <div class="form-group">
+                                        <label for="title">EnterInstallment/Endorsement. <span
+                                                style="color:red;">*</span> </label>
+                                        <input type="text" name="installment_endorsement_num"
+                                            placeholder="PremiumPolicyInstallmentNumber"
+                                            id="installment_endorsement_num" class="form-control" required
+                                            formControlName="PremiumPolicyInstallmentNumber">
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyPremiumDetails']['PremiumPolicyInstallmentNumber']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Installment/Endorment Mandatory
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding" formGroupName="PolicyPremiumDetails"
+                                    *ngIf="isPremiumSelected">
+                                    <div class="form-group">
+                                        <label for="title">Effective Date </label>
+                                        <input type="date" class="form-control" name="effective_date"
+                                            formControlName="PremiumPolicyEffectiveDate">
+
+                                        <div
+                                            *ngIf="this.insuranceForm.value['PolicyPremiumDetails']['PremiumPolicyEffectiveDate']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Please Enter Policy
+                                                Effective
+                                                Date
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+
+                                    <div class="form-group">
+                                        <label for="title"> Product Department <span style="color:red;">*</span>
+                                        </label>
+                                        <select name="department1" id="life_dropdown" class="form-control form-select"
+                                            required="" formControlName="ProductDepartment">
+                                            <option value="">Select</option>
+                                            <option value="Life">Life</option>
+                                            <option value="Life-Health">Life-Health</option>
+                                            <option value="Life-Pension">Life-Pension</option>
+                                            <option value="Life-Annuity">Life-Annuity</option>
+                                        </select>
+                                        <div
+                                            *ngIf="this.insuranceForm.value['ProductDepartment']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select ProductDepartment
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Product Type <span style="color:red;">*</span> </label>
+
+                                        <select name="policy_type1" class="form-control form-select" required
+                                            formControlName="ProductType">
+                                            <option value="">Select</option>
+                                            <option value="Linked">Linked</option>
+                                            <option value="Non-Linked">Non-Linked</option>
+                                        </select>
+                                        <div
+                                            *ngIf="this.insuranceForm.value['ProductType']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select ProductType</p>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Category? <span style="color:red;">*</span> </label>
+                                        <select name="category" id="category" class="form-control form-select"
+                                            required="" formControlName="Category">
+                                            <option value="">Select</option>
+                                            <option value="Retail">Retail</option>
+                                            <option value="Corporate">Corporate</option>
+                                        </select>
+                                        <div *ngIf="this.insuranceForm.value['Category']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select Category</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Sub-product name </label>
+                                        <input type="text" name="product_desc" class="form-control"
+                                            formControlName="SubProductName" placeholder="SubProductName">
+                                        <div class="row" style="color:red;"
+                                            *ngIf=' (this.insuranceForm.controls["SubProductName"].dirty || this.insuranceForm.controls["SubProductName"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["SubProductName"].value==""'>
+                                            *SubProductName Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding" formGroupName="MainInsurerDetails">
+                                    <label>*Main Insurance Name</label>
+                                    <select name="main_insurer_name1" id="main_insurer_name1"
+                                        class="form-control form-select" required="" formControlName="MainInsurerName">
+                                        <option value="">Select</option>
+                                        <option value="Life Insurance Corporation of India">Life Insurance
+                                            Corporation of India</option>
+                                        <option value="HDFC Life Insurance Co. Ltd">HDFC Life Insurance Co. Ltd
+                                        </option>
+                                        <option value="Max Life Insurance Co. Ltd.">Max Life Insurance Co. Ltd.
+                                        </option>
+                                        <option value="ICICI Prudential Life Insurance Co. Ltd">ICICI Prudential
+                                            Life Insurance Co. Ltd</option>
+                                        <option value="Kotak Mahindra Life Insurance Co. Ltd.">Kotak Mahindra Life
+                                            Insurance Co. Ltd.</option>
+                                        <option value="Aditya Birla SunLife Insurance Co. Ltd.">Aditya Birla SunLife
+                                            Insurance Co. Ltd.</option>
+                                        <option value="TATA AIA Life Insurance Co. Ltd.">TATA AIA Life Insurance Co.
+                                            Ltd.</option>
+                                        <option value="SBI Life Insurance Co. Ltd.">SBI Life Insurance Co. Ltd.
+                                        </option>
+                                        <option value="Exide Life Insurance Co. Ltd.">Exide Life Insurance Co. Ltd.
+                                        </option>
+                                        <option value="Bajaj Allianz Life Insurance Co. Ltd.">Bajaj Allianz Life
+                                            Insurance Co. Ltd.</option>
+                                        <option value="PNB MetLife India Insurance Co. Ltd.">PNB MetLife India
+                                            Insurance Co. Ltd.</option>
+                                        <option value="Reliance Nippon Life Insurance Company Limited">Reliance
+                                            Nippon Life Insurance Company Limited</option>
+                                        <option value="Aviva Life Insurance Company India Ltd.">Aviva Life Insurance
+                                            Company India Ltd.</option>
+                                        <option value="Sahara India Life Insurance Co. Ltd.">Sahara India Life
+                                            Insurance Co. Ltd.</option>
+                                        <option value="Shriram Life Insurance Co. Ltd.">Shriram Life Insurance Co.
+                                            Ltd.</option>
+                                        <option value="Bharti AXA Life Insurance Company Ltd.">Bharti AXA Life
+                                            Insurance Company Ltd.</option>
+                                        <option value="Future Generali India Life Insurance Company Limited">Future
+                                            Generali India Life Insurance Company Limited</option>
+                                        <option value="Ageas Federal Life Insurance Company Limited">Ageas Federal
+                                            Life Insurance Company Limited</option>
+                                        <option
+                                            value="Canara HSBC Oriental Bank of Commerce Life Insurance Company Limited">
+                                            Canara HSBC Oriental Bank of Commerce Life Insurance Company Limited
+                                        </option>
+                                        <option value="Aegon Life Insurance Company Limited">Aegon Life Insurance
+                                            Company Limited</option>
+                                        <option value="Pramerica Life Insurance Co. Ltd.">Pramerica Life Insurance
+                                            Co. Ltd.</option>
+                                        <option value="Star Union Dai-Ichi Life Insurance Co. Ltd.">Star Union
+                                            Dai-Ichi Life Insurance Co. Ltd.</option>
+                                        <option value="IndiaFirst Life Insurance Company Ltd.">IndiaFirst Life
+                                            Insurance Company Ltd.</option>
+                                        <option value="Edelweiss Tokio Life Insurance Company Limited">Edelweiss
+                                            Tokio Life Insurance Company Limited</option>
+                                    </select>
+
+                                    <div
+                                        *ngIf="this.insuranceForm.value['MainInsurerDetails']['MainInsurerName']=='' && this.submitted==true">
+                                        <p class="validationErrors validationcolor">*Please Select MinInsurance Name
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding" formGroupName="MainInsurerDetails">
+                                    <label>MainInsurence Branch Name</label>
+                                    <input type="text" class="form-control" name="main_insurer_branch"
+                                        formControlName="MainInsurerBranchName" placeholder="Branch Name">
+
+                                    <div
+                                        *ngIf="this.insuranceForm.value['MainInsurerDetails']['MainInsurerBranchName']=='' && this.submitted==true">
+                                        <p class="validationErrors validationcolor">*Please Select MinInsurance Name
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding" formGroupName="MainInsurerDetails">
+                                    <label>Main Insurance Percentage (%)</label>
+                                    <input type="number" step="any" name="main_insurer_percentage" value="0"
+                                        id="main_insurer_percentage" formControlName="MainInsurerCommision"
+                                        class="form-control" placeholder="MainInsurerCommision">
+
+                                    <div
+                                        *ngIf="this.insuranceForm.value['MainInsurerDetails']['MainInsurerCommision']=='' && this.submitted==true">
+                                        <p class="validationErrors validationcolor">*Please Enter Commision
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 inputpadding">
+                                    <ng-container formGroupName="CoInsurenceDetails">
+
+                                        <div class="row">
+
+
+                                            <div class="form-group">
+                                                <label for="title">Co-Insurance?<span style="color:red;">*</span>
+                                                </label>
+                                                <div class="form-check">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="IsCoinsurencerAvailable" value="Yes" [checked]=""
+                                                                (change)="InsuranceCo($event)"
+                                                                formControlName="IsCoinsurencerAvailable">
+                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                                Yes
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="IsCoinsurencerAvailable" value="No"
+                                                                (change)="InsuranceCo($event)"
+                                                                formControlName="IsCoinsurencerAvailable" [checked]="">
+                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="this.insuranceForm.value['CoInsurenceDetails']['IsCoinsurencerAvailable']=='' && this.submitted==true">
+                                                        <p class="validationErrors validationcolor">*Please Select
+                                                            Co-Insurance
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <br>
+
+                                        <br>
+
+                                    </ng-container>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Intermediary Name <span style="color:red;">*</span>
+                                        </label>
+                                        <select name="intermediary_name" id="intermediary_name"
+                                            class="form-control form-select" required="" (change)="intermediate($event)"
+                                            formControlName="IntermediaryName">
+                                            <option value="">Select</option>
+                                            <option value="Main">MAIN</option>
+                                            <option value="Others">OTHERS</option>
+                                        </select>
+                                        <div
+                                            *ngIf="this.insuranceForm.value['IntermediaryName']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select IntermediaryName
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="coInsurance" formGroupName="CoInsurenceDetails">
+                                    <div>
+
+                                        <div formArrayName="CoInsurerDetails"
+                                            *ngFor="let item of getControls(); let i = index;">
+                                            <div [formGroupName]="i">
+
+
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label>Co-Insurence Comapany Name</label>
+                                                        <select class="form-control form-select" required
+                                                            formControlName="CoInsurerName">
+                                                            <option value="">Select</option>
+                                                            <option value="Life Insurance Corporation of India">Life
+                                                                Insurance Corporation of India</option>
+                                                            <option value="HDFC Life Insurance Co. Ltd">HDFC Life
+                                                                Insurance Co. Ltd</option>
+                                                            <option value="Max Life Insurance Co. Ltd.">Max Life
+                                                                Insurance Co. Ltd.</option>
+                                                            <option value="ICICI Prudential Life Insurance Co. Ltd">
+                                                                ICICI Prudential Life Insurance Co. Ltd</option>
+                                                            <option value="Kotak Mahindra Life Insurance Co. Ltd.">
+                                                                Kotak Mahindra Life Insurance Co. Ltd.</option>
+                                                            <option value="Aditya Birla SunLife Insurance Co. Ltd.">
+                                                                Aditya Birla SunLife Insurance Co. Ltd.</option>
+                                                            <option value="TATA AIA Life Insurance Co. Ltd.">TATA
+                                                                AIA Life Insurance Co. Ltd.</option>
+                                                            <option value="SBI Life Insurance Co. Ltd.">SBI Life
+                                                                Insurance Co. Ltd.</option>
+                                                            <option value="Exide Life Insurance Co. Ltd.">Exide Life
+                                                                Insurance Co. Ltd.</option>
+                                                            <option value="Bajaj Allianz Life Insurance Co. Ltd.">
+                                                                Bajaj Allianz Life Insurance Co. Ltd.</option>
+                                                            <option value="PNB MetLife India Insurance Co. Ltd.">PNB
+                                                                MetLife India Insurance Co. Ltd.</option>
+                                                            <option
+                                                                value="Reliance Nippon Life Insurance Company Limited">
+                                                                Reliance Nippon Life Insurance Company Limited
+                                                            </option>
+                                                            <option value="Aviva Life Insurance Company India Ltd.">
+                                                                Aviva Life Insurance Company India Ltd.</option>
+                                                            <option value="Sahara India Life Insurance Co. Ltd.">
+                                                                Sahara India Life Insurance Co. Ltd.</option>
+                                                            <option value="Shriram Life Insurance Co. Ltd.">Shriram
+                                                                Life Insurance Co. Ltd.</option>
+                                                            <option value="Bharti AXA Life Insurance Company Ltd.">
+                                                                Bharti AXA Life Insurance Company Ltd.</option>
+                                                            <option
+                                                                value="Future Generali India Life Insurance Company Limited">
+                                                                Future Generali India Life Insurance Company Limited
+                                                            </option>
+                                                            <option
+                                                                value="Ageas Federal Life Insurance Company Limited">
+                                                                Ageas Federal Life Insurance Company Limited
+                                                            </option>
+                                                            <option
+                                                                value="Canara HSBC Oriental Bank of Commerce Life Insurance Company Limited">
+                                                                Canara HSBC Oriental Bank of Commerce Life Insurance
+                                                                Company Limited</option>
+                                                            <option value="Aegon Life Insurance Company Limited">
+                                                                Aegon Life Insurance Company Limited</option>
+                                                            <option value="Pramerica Life Insurance Co. Ltd.">
+                                                                Pramerica Life Insurance Co. Ltd.</option>
+                                                            <option value="Star Union Dai-Ichi Life Insurance Co. Ltd.">
+                                                                Star Union Dai-Ichi Life Insurance Co. Ltd.</option>
+                                                            <option value="IndiaFirst Life Insurance Company Ltd.">
+                                                                IndiaFirst Life Insurance Company Ltd.</option>
+                                                            <option
+                                                                value="Edelweiss Tokio Life Insurance Company Limited">
+                                                                Edelweiss Tokio Life Insurance Company Limited
+                                                            </option>
+                                                        </select>
+
+
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <label> CoInsurer BranchName</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="CoInsurerBranchName"
+                                                            formControlName="CoInsurerBranchName" required
+                                                            name="insurer_2_branch" placeholder="Branch Name">
+                                                        <div
+                                                            *ngIf="this.insuranceForm.get('CoInsurenceDetails.CoInsurerBranchName') && this.submitted==true">
+                                                            <p class="validationErrors validationcolor">*Please
+                                                                Select Co-Insurance </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label>Percentage(%)</label>
+                                                        <input type="number" value="0" required
+                                                            placeholder="EnterCommision"
+                                                            formControlName="CoInsurerCommision" class="form-control">
+                                                        <div
+                                                            *ngIf="this.insuranceForm.get('CoInsurenceDetails.CoInsurerCommision') && this.submitted==true">
+                                                            <p class="validationErrors validationcolor">*Please
+                                                                Enter Commission</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div [formGroup]="coins">
+                                          <div class="row">
+                                            <div class="col-md-5">
+                                                <label>Co-Insurence Comapany Name</label>
+                                                <select class="form-control form-select" required
+                                                    formControlName="CoInsurerName">
+                                                    <option value="">Select</option>
+                                                    <option value="Life Insurance Corporation of India">Life
+                                                        Insurance Corporation of India</option>
+                                                    <option value="HDFC Life Insurance Co. Ltd">HDFC Life
+                                                        Insurance Co. Ltd</option>
+                                                    <option value="Max Life Insurance Co. Ltd.">Max Life
+                                                        Insurance Co. Ltd.</option>
+                                                    <option value="ICICI Prudential Life Insurance Co. Ltd">
+                                                        ICICI Prudential Life Insurance Co. Ltd</option>
+                                                    <option value="Kotak Mahindra Life Insurance Co. Ltd.">
+                                                        Kotak Mahindra Life Insurance Co. Ltd.</option>
+                                                    <option value="Aditya Birla SunLife Insurance Co. Ltd.">
+                                                        Aditya Birla SunLife Insurance Co. Ltd.</option>
+                                                    <option value="TATA AIA Life Insurance Co. Ltd.">TATA
+                                                        AIA Life Insurance Co. Ltd.</option>
+                                                    <option value="SBI Life Insurance Co. Ltd.">SBI Life
+                                                        Insurance Co. Ltd.</option>
+                                                    <option value="Exide Life Insurance Co. Ltd.">Exide Life
+                                                        Insurance Co. Ltd.</option>
+                                                    <option value="Bajaj Allianz Life Insurance Co. Ltd.">
+                                                        Bajaj Allianz Life Insurance Co. Ltd.</option>
+                                                    <option value="PNB MetLife India Insurance Co. Ltd.">PNB
+                                                        MetLife India Insurance Co. Ltd.</option>
+                                                    <option
+                                                        value="Reliance Nippon Life Insurance Company Limited">
+                                                        Reliance Nippon Life Insurance Company Limited
+                                                    </option>
+                                                    <option value="Aviva Life Insurance Company India Ltd.">
+                                                        Aviva Life Insurance Company India Ltd.</option>
+                                                    <option value="Sahara India Life Insurance Co. Ltd.">
+                                                        Sahara India Life Insurance Co. Ltd.</option>
+                                                    <option value="Shriram Life Insurance Co. Ltd.">Shriram
+                                                        Life Insurance Co. Ltd.</option>
+                                                    <option value="Bharti AXA Life Insurance Company Ltd.">
+                                                        Bharti AXA Life Insurance Company Ltd.</option>
+                                                    <option
+                                                        value="Future Generali India Life Insurance Company Limited">
+                                                        Future Generali India Life Insurance Company Limited
+                                                    </option>
+                                                    <option
+                                                        value="Ageas Federal Life Insurance Company Limited">
+                                                        Ageas Federal Life Insurance Company Limited
+                                                    </option>
+                                                    <option
+                                                        value="Canara HSBC Oriental Bank of Commerce Life Insurance Company Limited">
+                                                        Canara HSBC Oriental Bank of Commerce Life Insurance
+                                                        Company Limited</option>
+                                                    <option value="Aegon Life Insurance Company Limited">
+                                                        Aegon Life Insurance Company Limited</option>
+                                                    <option value="Pramerica Life Insurance Co. Ltd.">
+                                                        Pramerica Life Insurance Co. Ltd.</option>
+                                                    <option value="Star Union Dai-Ichi Life Insurance Co. Ltd.">
+                                                        Star Union Dai-Ichi Life Insurance Co. Ltd.</option>
+                                                    <option value="IndiaFirst Life Insurance Company Ltd.">
+                                                        IndiaFirst Life Insurance Company Ltd.</option>
+                                                    <option
+                                                        value="Edelweiss Tokio Life Insurance Company Limited">
+                                                        Edelweiss Tokio Life Insurance Company Limited
+                                                    </option>
+                                                </select>
+                                             </div>
+                                            <div class="col-md-4 ">
+                                                <label> CoInsurer BranchName</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="CoInsurerBranchName"
+                                                    formControlName="CoInsurerBranchName" required
+                                                    name="insurer_2_branch" placeholder="Branch Name">
+                                                
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Percentage(%)</label>
+                                                <input type="number" value="0" required
+                                                    placeholder="EnterCommision"
+                                                    formControlName="CoInsurerCommision" class="form-control">
+                                               
+                                            </div>
+
+                                        </div>
+                                            <div class="col-md-3">
+
+                                                <input (click)="oncoinsadded()"  type="button" value="Add" class="btn btn-primary">
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-2">
+                                            <input class="btn btn-primary" type="button" (click)="addInput()"
+                                                style="margin-top: 10px;" value="add">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 col-4 inputpadding" *ngIf="intermediateOther">
+                                    <div class="form-group">
+                                        <label for="title">Please mention <span style="color:red;">*</span> </label>
+                                        <input type="text" class="form-control" name="IntermediaryOtherName"
+                                            placeholder="IntermediaryOtherName" required="required"
+                                            formControlName="IntermediaryOtherName">
+                                        <div class="row" style="color:red;"
+                                            *ngIf=' (this.insuranceForm.controls["IntermediaryOtherName"].dirty || this.insuranceForm.controls["IntermediaryOtherName"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["IntermediaryOtherName"].value==""'>
+                                            *IntermediaryOtherName Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Co- Broking? <span style="color:red;">*</span> </label>
+                                        <select name="CoBroking" class="form-control form-select" required=""
+                                            (change)="coBroking($event)" formControlName="CoBroking">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        <div *ngIf="this.insuranceForm.value['CoBroking']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select IntermediaryName
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding" *ngIf="broking">
+                                    <div class="form-group">
+                                        <label for="title">Please mention <span style="color:red;">*</span> </label>
+                                        <input type="text" placeholder="CoBrokingName" class="form-control" required=""
+                                            formControlName="CoBrokingName">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Policy Start Date <span style="color:red;">*</span></label>
+
+                                        <input type="date" class="form-control" name="PolicyStartDate"
+                                            formControlName="PolicyStartDate"
+                                            onkeyup="this.setAttribute('value', this.value);" value="">
+                                        <div class="row validationcolor"
+                                            *ngIf=' (this.insuranceForm.controls["PolicyStartDate"].dirty || this.insuranceForm.controls["PolicyStartDate"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["PolicyStartDate"].value==""'>
+                                            *Policy StartDate Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Policy End Date <span style="color:red;">*</span></label>
+
+
+                                        <input type="date" class="form-control" name="EndDate"
+                                            formControlName="PolicyEndDate" min="{{maxdate | date:'yyyy-MM-dd'}}"
+                                            onkeyup="this.setAttribute('value', this.value);" value="">
+                                        <div class="row validationcolor"
+                                            *ngIf=' (this.insuranceForm.controls["PolicyEndDate"].dirty || this.insuranceForm.controls["PolicyEndDate"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["PolicyEndDate"].value==""'>
+                                            *Policy EndDate Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">A. OD or Basic Premium (Rs.) <span
+                                                style="color:red;">*</span> </label>
+                                        <input type="number" step="any" class="form-control" id="basic_premium"
+                                            (change)="addingOD ($event)" value="0" placeholder="Basic Premium"
+                                            formControlName="OD_BasicPremium" required>
+                                        <div class="row"
+                                            *ngIf=' (this.insuranceForm.controls["OD_BasicPremium"].dirty || this.insuranceForm.controls["OD_BasicPremium"].touched ||this.submitted==true )&&  this.insuranceForm.controls["OD_BasicPremium"].value==""'>
+                                            <p class="validationcolor">*OD Premium EnterNumbers only</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">B. TP or Terrorism Premium (Rs.) <span
+                                                style="color:red;">*</span> </label>
+                                        <input type="number" step="any" class="form-control" id="terrorism_premium"
+                                            value="0" name="terrorism_premium" (change)="addingtp ($event)"
+                                            placeholder="Terrorism Premium" formControlName="TP_TerrorismPremium"
+                                            required="">
+                                        <div class="row"
+                                            *ngIf=' (this.insuranceForm.controls["TP_TerrorismPremium"].dirty || this.insuranceForm.controls["TP_TerrorismPremium"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["TP_TerrorismPremium"].value==""'>
+                                            <p class="validationcolor">*TP Premium EnterNumbers only</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Net Premium (A+B) (Rs.)</label>
+                                        <input type="text" class="form-control" readonly id="NetPremium"
+                                            name="NetPremium" formControlName="NetPremium">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title">Is GST @ 18%? <span style="color:red;">*</span> </label>
+                                        <div class="form-check">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input class="form-check-input" type="radio" name="IsGST@18%"
+                                                        value="Yes" [checked]="" (change)="gst($event)"
+                                                        formControlName="IsGST@18%">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Yes
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <input class="form-check-input" type="radio" name="IsGST@18%"
+                                                        value="No" (change)="gst($event)" formControlName="IsGST@18%"
+                                                        [checked]="">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding" *ngIf="noGst">
+                                    <div class="form-group">
+                                        <label for="title"> Enter Total GST Amount Rs.(Combined tax on A &amp; B as
+                                            on policy slip) <span style="color:red;">*</span> </label>
+                                        <input type="number" step="any" id="total_gst_text" placeholder="Total Gst"
+                                            class="form-control" required="" formControlName="TotalGSTAmount">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Payment Date <span style="color:red;">*</span> </label>
+                                        <input type="date" class="form-control" required=""
+                                            formControlName="PaymentDate">
+
+                                        <div class="row validationcolor"
+                                            *ngIf=' (this.insuranceForm.controls["PaymentDate"].dirty || this.insuranceForm.controls["PaymentDate"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["PaymentDate"].value==""'>
+                                            *PaymentDate Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Mode of Payment <span style="color:red;">*</span>
+                                        </label>
+                                        <select name="paid_by" class="form-control form-select"
+                                            formControlName="ModeOfPayment">
+                                            <option value="">Select</option>
+                                            <option value="Online Payment">Online Payment</option>
+                                            <option value="Cheque">Cheque</option>
+                                            <option value="Cash">Cash</option>
+                                        </select>
+                                        <div
+                                            *ngIf="this.insuranceForm.value['ModeOfPayment']=='' && this.submitted==true">
+                                            <p class="validationErrors validationcolor">*Please Select IntermediaryName
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Transaction / Cheque No <span style="color:red;">*</span>
+                                        </label>
+                                        <input type="text" name="transaction_cheque" required="" class="form-control"
+                                            formControlName="BankReferenceNo" placeholder=" BankReferenceNo">
+
+                                        <div class="row validationcolor"
+                                            *ngIf=' (this.insuranceForm.controls["BankReferenceNo"].dirty || this.insuranceForm.controls["BankReferenceNo"].touched ||  this.submitted==true )&&  this.insuranceForm.controls["BankReferenceNo"].value==""'>
+                                            *Transaction/Cheq No Mandatory
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Bank name </label>
+                                        <input type="text" class="form-control" formControlName="BankName"
+                                            placeholder="BankName">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Expected Total Commission in Rs.</label>
+                                        <input type="number" step="0.001" name="expected_total_commission" value="0"
+                                            class="form-control" formControlName="ExpectedTotalCommision"
+                                            placeholder="Total Commission">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-4 inputpadding">
+                                    <div class="form-group">
+                                        <label for="title"> Remarks?</label>
+                                        <textarea name="remarks" class="form-control" spellcheck="false"
+                                            formControlName="Remarks"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+
+                                    <div class="form-group">
+                                        <button type="submit" value="Submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

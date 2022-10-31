@@ -1,0 +1,473 @@
+<router-outlet>
+  <!-- <div class="container-fluid">
+    <div class="navbar" style="z-index: 10;" *ngIf="token !=null">
+        <a href="#"><img src="../../assets/images/images.png" class="logoimg"></a>
+        <a href="" (click)="logout()">logout</a>
+    </div>
+
+</div> -->
+
+  <!-- Just an image -->
+  <nav class="navbar" style="z-index: 10; background-color: white;">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/images/images.png" width="100" alt="Anvayaa" title="Anvayaa" class="logoimg">
+    </a>
+    <!-- <a data-bs-toggle="modal" data-bs-target="#CreateRequest">create</a> -->
+    <a (click)="plus()" data-bs-toggle="modal" data-bs-target="#CreateRequest"> <img class="createRequest"
+        src="../../assets/images/add.png" alt=""> </a>
+
+    <a href="" (click)="logout()">logout</a>
+  </nav>
+  <div class="row">
+    <div class="leftCol text-center" *ngIf="token !=null">
+      <div (click)="support()"> <img src="../../assets/images/icons8-user-48.png" class="imgheight" />
+        <div>Support</div>
+      </div>
+      <!-- <div (click)="emergencyList()"><img src="../../assets/images/icons8-ambulance-50.png" class="imgheight" />
+                <div>Emergency</div>
+            </div> -->
+      <!-- <div (click)=" CustomerList()"> <img src="../../assets/images/icons8-users-64.png" class="imgheight" />
+                <div>Customers</div>
+            </div> -->
+      <!-- <a> <img src="../../assets/images/icons8-money-bag-30.png" class="imgheight" />
+                <div>Finance</div>
+            </a> -->
+      <!-- <div (click)=" AnchorDashBoard() "><img src="../../assets/images/icons8-list-view-50.png" class="imgheight" />
+                <div>Anchor</div>
+            </div> -->
+      <div (click)="PermissionsClick()"><img src="../../assets/images/dementiaSymbol.png" class="imgheight" />
+        <div class="accordion-body">Permission</div>
+      </div>
+      <div (click)="onDementiaClick()"><img src="../../assets/images/dementiaSymbol.png" class="imgheight" />
+        <div class="accordion-body">Dementia</div>
+      </div>
+      <!--     
+            <div (click)="Insurance()"><img src="../../assets/images/healthcare (1).png" class="imgheight" />
+                <div>insurance</div>
+            </div>
+            <div (click)="onOneTimeUser()"><img src="../../assets/images/OneTimeUser/PayPerUse.png" class="imgheight" />
+                <div>One Time User</div>
+            </div> -->
+      <div (click)="partner()"><img src="../../assets/images/deal (1).png" class="imgheight" />
+        <div>partners</div>
+      </div>
+      <div (click)="revenue()"><img src="../../assets/images/deal (1).png" class="imgheight" />
+        <div>Revenue</div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- <div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-3 col-md-2 col-sm-2 col-lg-1" >
+            <div class="leftCol" *ngIf="token !=null">
+
+                <div (click)="onProfile()"> <img src="../../assets/images/icons8-user-48.png" class="imgheight" />
+                    <div>Profile</div>
+                </div>
+                <div (click)="emergencyList()"><img src="../../assets/images/icons8-ambulance-50.png" class="imgheight" />
+                    <div>Emergency</div>
+                </div>
+                <div (click)=" CustomerList()"> <img src="../../assets/images/icons8-users-64.png" class="imgheight" />
+                    <div>Customers</div>
+                </div>
+                <a> <img src="../../assets/images/icons8-money-bag-30.png" class="imgheight" />
+                    <div>Finance</div>
+                </a>
+                <div (click)=" AnchorDashBoard() "><img src="../../assets/images/icons8-list-view-50.png" class="imgheight" />
+                    <div>Anchor</div>
+                </div>
+                <a><img src="../../assets/images/icons8-master-26.png" class="imgheight" />
+                    <div>Masters</div>
+                </a>
+                <div (click)="onDementiaClick()"><img src="../../assets/images/dementiaSymbol.png" class="imgheight" />
+                    <div class="accordion-body">Dementia</div>
+                </div>
+             
+                <div (click)="Insurance()"><img src="../../assets/images/healthcare (1).png" class="imgheight" />
+                    <div>insurance</div>
+                </div>
+                <div (click)="onOneTimeUser()"><img src="../../assets/images/OneTimeUser/PayPerUse.png" class="imgheight" />
+                    <div>One Time User</div>
+                </div>
+            
+                <div (click)="partner()"><img src="../../assets/images/OneTimeUser/PayPerUse.png" class="imgheight" />
+                    <div>partners</div>
+                </div>
+            
+            
+            </div>
+        </div>
+        <div class="col-9 col-md-10 col-sm-10 col-lg-11 bodycontent ">
+        </div>
+    </div>
+</div>  -->
+  <!-- <div class="leftCol" *ngIf="token !=null">
+
+        <div (click)="onProfile()"> <img src="../../assets/images/icons8-user-48.png" class="imgheight" />
+            <div>Profile</div>
+        </div>
+        <div (click)="emergencyList()"><img src="../../assets/images/icons8-ambulance-50.png" class="imgheight" />
+            <div>Emergency</div>
+        </div>
+        <div (click)=" CustomerList()"> <img src="../../assets/images/icons8-users-64.png" class="imgheight" />
+            <div>Customers</div>
+        </div>
+        <a> <img src="../../assets/images/icons8-money-bag-30.png" class="imgheight" />
+            <div>Finance</div>
+        </a>
+        <div (click)=" AnchorDashBoard() "><img src="../../assets/images/icons8-list-view-50.png" class="imgheight" />
+            <div>Anchor</div>
+        </div>
+        <a><img src="../../assets/images/icons8-master-26.png" class="imgheight" />
+            <div>Masters</div>
+        </a>
+        <div (click)="onDementiaClick()"><img src="../../assets/images/dementiaSymbol.png" class="imgheight" />
+            <div class="accordion-body">Dementia</div>
+        </div>
+
+        <div (click)="Insurance()"><img src="../../assets/images/healthcare (1).png" class="imgheight" />
+            <div>insurance</div>
+        </div>
+        <div (click)="onOneTimeUser()"><img src="../../assets/images/OneTimeUser/PayPerUse.png" class="imgheight" />
+            <div>One Time User</div>
+        </div>
+
+        <div (click)="partner()"><img src="../../assets/images/OneTimeUser/PayPerUse.png" class="imgheight" />
+            <div>partners</div>
+        </div>
+
+
+    </div> -->
+
+  <div class="modal fade " id="CreateRequest" role="dialog " aria-hidden="true " data-backdrop="static "
+    data-keyboard="false " aria-labelledby="fieldEmployeeModalLabel ">
+    <div class="modal-dialog modal-xl  " role="document">
+      <div class="modal-content">
+        <form name="">
+
+          <div class="header modal-header model">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <!-- <h2 class="titleCreate modal-title  text-center ">Create Request </h2> -->
+          </div>
+          <div class="modal-body">
+            <div class=" allcp-form ">
+              <div class=" row">
+                <div class="  col-md-4">
+                  <div class="searchBox ng-autocomplete">
+                    <ng-autocomplete [data]="data" [searchKeyword]="keyword" placeholder="Select Beneficiary"
+                      (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+                      (inputCleared)='onFocused($event)' historyIdentifier="data" [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">
+                    </ng-autocomplete>
+
+
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.Name"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="planData col-md-4">
+                  <!-- <p *ngIf="planType!=null;else cnd"><span ></span></p> -->
+
+                  <span class="plaDetails">Plan Type: {{planType}}</span>
+                  <!-- <span class="plaDetails" *ngIf="planType==null">Plan Type:</span> -->
+                  <br>
+                  <span class="plaDetails">Package Nature: {{PackageNature}}</span>
+                  <br>
+
+                  <span class="plaDetails"> PMS Balance:</span>
+
+                </div>
+              </div>
+              <div class="customerData row" *ngIf="userDetails.length>0">
+                <div class="  row" *ngFor="let data of userDetails">
+                  <div class="sponserDetails border border-dark col-sm-4">
+                    <span>
+                      <span class="nameBorder">Sponsor</span>
+                    </span>
+                    <!-- <span>  Name:</span> -->
+                    <h4>{{data.Name}}</h4>
+                    <span class="validationNames"> Ph NO:{{data.MobileNumber}}</span>
+                    <!-- <p><span> EmailID:</span>{{data.EmailID}}</p> -->
+                    <!-- <p><span> City:</span>{{data.City}}</p> -->
+                  </div>
+                  <div class=" sponserDetails border border-dark col-sm-4">
+                    <span class="nameBorder">Beneficiary 1</span>
+                    <h4>{{data.Beneficiaries[0].Name}}</h4>
+                    <span class="validationNames"> Ph NO:{{data.Beneficiaries[0].MobileNumber}}</span>
+                    <!-- <span class="emailID">EmailID:{{data.Beneficiaries[0].EmailID}}</span> -->
+                    <!-- <p><span> City:</span>{{data.Beneficiaries[0].City}}</p> -->
+                  </div>
+                  <div class="sponserDetails border border-dark col-sm-4" *ngIf="data.Beneficiaries.length>=2">
+                    <span class="nameBorder">Beneficiary 2</span>
+                    <h4>{{data.Beneficiaries[1].Name}}</h4>
+                    <span class="validationNames"> Ph NO:{{data.Beneficiaries[1].MobileNumber}}</span>
+                    <!-- <p><span> EmailID:</span>{{data.Beneficiaries[1].EmailID}}</p> -->
+                    <!-- <p><span> City:</span>{{data.Beneficiaries[1].City}}</p> -->
+                  </div>
+                </div>
+                <div class="cmspdetails row" *ngFor="let data of userDetails">
+                  <!-- {{data.SupportExecutiveObj==null}} -->
+                  <div class="bgcolors border border-dark col-md-4" *ngIf="data.SupportExecutiveObj!=null">
+                    <span class="support">Support Executive</span>
+
+                    <h4>Name: {{data.SupportExecutiveObj.FirstName}}</h4>
+                    <!-- <span>  Name:</span> -->
+                    <span class="validationNames"> Contact Number:{{data.SupportExecutiveObj.ContactNumber}}</span>
+                  </div>
+                  <div class="bgcolors border border-dark col-md-4" *ngIf="data.CareManagerObj!=null">
+                    <span class="support">Care Manager</span>
+                    <h4> <span>Name:</span> {{data.CareManagerObj.FirstName}}</h4>
+                    <span class="validationNames"> Contact Number:{{data.CareManagerObj.ContactNumber}}</span>
+                  </div>
+                  <div class="bgcolors border border-dark col-md-4" *ngIf="data.BackUpCareManagerObj!=null">
+                    <span class="support">Backup Care Manager</span>
+                    <h4>Name: {{data.BackUpCareManagerObj.FirstName}}</h4>
+                    <!-- <h3 *ngIf="data.BackUpCareManagerObj!=null">Name:{{data.BackUpCareManagerObj.FirstName}}</h3> -->
+                    <span class="validationNames" *ngIf="data.BackUpCareManagerObj!=null"> Contact
+                      Number:{{data.BackUpCareManagerObj.ContactNumber}}</span>
+                  </div>
+                </div>
+                <div class="row" [formGroup]="createRequestData">
+                  <div class="searchbox col-sm-4">
+                    <div class="serviceSelect ng-autocomplete">
+                      <ng-autocomplete [data]="categaryDetails" [searchKeyword]="keyword1" placeholder="Select Service"
+                        (inputChanged)='onChangePlan($event)' (selected)='selectCategory($event)'
+                        (inputCleared)='onFocuse($event)' historyIdentifier="categaryDetails"
+                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                      </ng-autocomplete>
+                      <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.AliasName"></a>
+                      </ng-template>
+                      <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="anvayaaCharges col-md-4" [hidden]="formDetails==false">
+                    <h2>Anvayaa Charges:</h2>
+                    <h6> {{Covered}}</h6>
+                    <h6 class="text-danger"> {{NotCovered}}</h6>
+                    <p><span>Estimated Range:</span> /-</p>
+                    <p><span>Anvayaa Charges:</span>{{TotalPrice}} /-</p>
+                  </div>
+                  <div class="nxtbtn col-md-2" [hidden]="formDetails==false">
+                    <button class="createReqBtn" data-bs-toggle="modal" data-bs-target="#newRequest">NEXT>></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade " id="newRequest" role="dialog " aria-hidden="true " data-backdrop="static "
+    data-keyboard="false " aria-labelledby="fieldEmployeeModalLabel ">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+
+        <form name="UpdateStatusForm" [formGroup]="createRequestData">
+          <div class="header modal-header model">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <!-- <h2 class="titleCreate modal-title  text-center ">Create Request </h2> -->
+          </div>
+          <div class="modal-body">
+            <div class="container allcp-form ">
+              <div class="row">
+                <div class=' col-sm-3' [hidden]="CoverdPlan">
+                  Request Type:
+                  <div id='Status'>
+                    <label for="Status" class="field select">
+                      <select class="selectType" formControlName="ServiceRequestType">
+                        <option selected value="">Select Request Type</option>
+                        <option value="InHouseRequest">In House</option>
+                        <option value="ThirdPartyRequest">Third Party</option> -->
+                      </select>
+                      <i class="arrow double"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class='col-sm-3' [hidden]="CoverdPlan">
+                  Service Type :
+                  <div id='Status'>
+                    <label for="Status" class="field select">
+                      <select class="selectType" formControlName="ServiceType">
+                        <option selected value="">Select Service Type</option>
+                        <option value="Onetime">One Time</option>
+                        <option value="Ongoing/ Daily">Daily/Ongoing</option>
+                        <option value="Recurring">Recurring</option>
+                      </select>
+                      <i class="arrow double"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class='col-sm-3'>
+                  Select Start Date :
+
+                  <div class="input-group date">
+                    <input formControlName="RequestedStartDate" type='datetime-local' class="selectType form-control"
+                      placeholder="Select Start Date" required>
+                  </div>
+                </div>
+                <div class='col-sm-3'>
+                  Select End Date :
+                  <div class="input-group date">
+                    <input formControlName="RequestedEndDate" type='date' class="selectType form-control"
+                      placeholder="Select EndDate ">
+
+                  </div>
+
+                </div>
+
+
+              </div>
+              <div class="NextScreen row">
+                <div class="col-sm-2" *ngIf="this.createRequestData.value.ServiceType=='Recurring'"
+                  [hidden]="CoverdPlan" (change)="DaysSelect($event)">
+                  Select Days:
+                  <div class="form-check">
+                    <input formControlName="days" value="MONDAY" class="checkboxstyle form-check-input" type="checkbox"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Mon
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input formControlName="days" value="TUESDAY" class="checkboxstyle form-check-input" type="checkbox"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Tue
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="WEDNESDAY" class="checkboxstyle form-check-input" type="checkbox"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Wed
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="THURSDAY" class="checkboxstyle form-check-input" type="checkbox"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Thu
+                    </label>
+                  </div>
+
+                </div>
+                <div class="selectDayss col-sm-2" *ngIf="this.createRequestData.value.ServiceType=='Recurring'"
+                  [hidden]="CoverdPlan" (change)="DaysSelect($event)">
+
+                  <div class="form-check">
+                    <input value="FRIDAY" class="checkboxstyle form-check-input" type="checkbox" name="flexRadioDefault"
+                      id="flexRadioDefault1">
+                    <label class="daysSize form-check-label" for="flexRadioDefault1">
+                      Fri
+                    </label>
+                  </div>
+
+
+                  <div class="form-check">
+                    <input value="SATURDAY" class="checkboxstyle form-check-input" type="checkbox"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Sat
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="SUNDAY" class="checkboxstyle form-check-input" type="checkbox" name="flexRadioDefault"
+                      id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Sun
+                    </label>
+                  </div>
+                </div>
+                <!-- <div class="selectType col-sm-3" *ngIf="this.createRequestData.value.ServiceType=='Recurring'"> -->
+
+
+
+                <!-- <ng-multiselect-dropdown class="" value="dropdownList" formControlName="days" [placeholder]="'select Days'"
+                    [settings]="dropdownSettings" [data]="Days" [(ngModel)]="selectedItems">
+                  </ng-multiselect-dropdown> -->
+                <!-- </div> -->
+
+
+                <div class="selectDays col-sm-2" [hidden]="CoverdPlan" (change)="paymentMode($event)">
+                  Payment Mode:
+                  <div class="form-check">
+                    <input value="Cheque" class="checkboxstyle form-check-input" type="radio" name="flexRadioDefault"
+                      id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Cheque
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="Wire Transfer" class="checkboxstyle form-check-input" type="radio"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      Wire Transfer
+                    </label>
+                  </div>
+                </div>
+                <div class="paymentMode col-sm-2" [hidden]="CoverdPlan" (change)="paymentMode($event)">
+                  <div class=" form-check">
+                    <input value="Cash" class="checkboxstyle form-check-input" type="radio" name="flexRadioDefault"
+                      id="flexRadioDefault1">
+                    <label class="daysSize form-check-label" for="flexRadioDefault1">
+                      Cash
+                    </label>
+                  </div>
+
+
+                  <div class="form-check" [hidden]="pmsVerify!=true">
+                    <input value="PMS" class="checkboxstyle form-check-input" type="radio" name="flexRadioDefault"
+                      id="flexRadioDefault2">
+                    <label class="daysSize form-check-label" for="flexRadioDefault2">
+                      PMS
+                    </label>
+                  </div>
+                </div>
+
+                <div class='selectDays col-sm-3'>
+                  Remarks :
+                  <div id='Remark'>
+                    <textarea type='text' formControlName="Note" class="form-control" required style="width: 225px;"
+                      placeholder="Enter Remark">
+                        </textarea>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <div class="modal-footer">
+          <button (click)="createRequests()" class="createReqBtn">Create Request</button>
+          <button type="button" class="closebtn" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</router-outlet>
+
+<ngx-spinner type="ball-scale-multiple">loading...</ngx-spinner>

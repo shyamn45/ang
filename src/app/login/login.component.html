@@ -1,0 +1,17 @@
+<form #loginform="ngForm">
+  <div class="imgcontainer">
+    <div><img style="height: 150px;" src="../../assets/images/images.png" /></div>
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" name="UserID" ngModel placeholder="Enter Username" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" name="Password" ngModel placeholder="Enter Password" required>
+    <button (click)="formSubmit(loginform.value)" type="submit">Login</button>
+    <label>
+      <a routerLink="#">forgotPassword?</a>
+    </label>
+  </div>
+</form>
+<ngx-spinner type="ball-scale-multiple">loading...</ngx-spinner>

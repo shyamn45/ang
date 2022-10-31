@@ -1,0 +1,55 @@
+<div class="bodycontent">
+
+    <div class="card panel-default">
+        <div class="card-body">
+            <h3 class="reuestHeading">Active Requests</h3>
+            <table class="table table-striped table-hover table-bordered">
+            
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">SNo</th> -->
+                        <th scope="col">Request ID </th>
+                        <th scope="col">Sponser Name</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Requested For</th>
+                        <th scope="col">Job Status</th>
+                        <th scope="col">Created Date</th>
+                        <!-- <th scope="col"> Requested Date</th> -->
+                        <th scope="col">City </th>
+                        <th scope="col">Partner Executive Name </th>
+                        <th scope="col">Support Executive Name </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tablecur"
+                        (click)="requestDetails(profiledetaiils.RequestID,profiledetaiils.CustomerDetails.CustRecID)"
+                        *ngFor="let profiledetaiils of profileData;let i=index">
+                        <!-- <th scope="row">{{i+1}}</th> -->
+                        <td>{{profiledetaiils.RequestID}}</td>
+                        <td>{{profiledetaiils.CustomerDetails.Name}}</td>
+                        <td>{{profiledetaiils.CustomerDetails.BeneficiaryDetails.Name}}</td>
+                        <td>{{profiledetaiils.AliasName}}</td>
+                        <td>{{profiledetaiils.Status}}</td>
+                        <td>{{(profiledetaiils.CreatedDate)*1000|date:'dd/MM/YYYY'}}</td>
+                        <!-- <td *ngIf="profiledetaiils.RequestedDate!=null"> {{(profiledetaiils.RequestedDate)*1000|date:'dd/MM/YYYY'}}</td>
+                        <td *ngIf="profiledetaiils.RequestedDate==null"></td> -->
+                        <td *ngIf="profiledetaiils.PackageDetails!=null">{{profiledetaiils.PackageDetails.ServiceAreaName}} </td>
+                        <td *ngIf="profiledetaiils.PackageDetails==null"> </td>
+                        <td *ngIf="profiledetaiils.PartnerExecutiveDetails!=null ">
+                            {{profiledetaiils.PartnerExecutiveDetails.FirstName}}
+                            {{profiledetaiils.PartnerExecutiveDetails.LastName}}</td>
+                        <td> 
+                            {{profiledetaiils.SupportExecutiveDetails?profiledetaiils.SupportExecutiveDetails.FirstName + "  " + profiledetaiils.SupportExecutiveDetails.LastName :"--"}}
+                            
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<ngx-spinner type="ball-scale-multiple">loading...</ngx-spinner>

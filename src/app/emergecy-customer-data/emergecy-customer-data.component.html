@@ -1,0 +1,164 @@
+
+
+  
+  <div class="content container-fluid">
+
+    <div class="previousebutton">
+      <img src="https://img.icons8.com/ios/60/000000/circled-left-2.png" routerLink="/emergencyList">
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80"
+            class="image--cover"></th>
+          <th scope="col">
+            <div>Name </div>
+            <div class="fontfour">City</div>
+          </th>
+          <th scope="col">
+            <div>HeartRate</div>
+            <div class="fontfour">103</div>
+          </th>
+          <th scope="col">
+            <div> B.p</div>
+            <div class="fontfour">130</div>
+          </th>
+          <th scope="col">
+            <div>Assigned To </div>
+            <div class="fontfour">{{SupportCenterExecutive}}</div>
+          </th>
+          <th scope="col">
+            <div>Location</div>
+            <div class="fontfour">Hyderabad</div>
+          </th>
+          <th scope="col">
+            <div>CareManager Request</div>
+            <div class="fontfour">hello</div>
+          </th>
+          <th scope="col">
+            time
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+       
+    </table>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-3 statustables" >
+          <h6>AmbulanceAvilability</h6>
+          <table class="table">
+            <tr><td><b></b></td></tr>
+            <tr *ngFor=" let ambulance of NearestAmbulanceServices">
+              <td>{{ambulance.Name}}</td>
+              <td>{{ambulance.ContactNumber}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-sm-3 statustables hospitaldiv">
+          <h6>Hospital Availability</h6>
+          <table class="table">
+            <tr><td><b></b></td></tr>
+            <tr><td><b>SuperSpacality Hospital</b></td></tr>
+            <tr *ngFor = "let Hospital of NearestHospitalSuperSpacality">
+              <td>{{Hospital.Name}}</td>
+              <!-- <td>{{Hospital.ContactNumber}}</td> -->
+            </tr>
+            <tr><b>PreferdEmergencyHospital</b></tr>
+            <tr *ngFor="let emergency of PreferdEmergencyHospital">
+              <td>{{emergency.Name}}</td>
+              <!-- <td>{{emergency.ContactNumber}}</td> -->
+            </tr>
+            <tr><b>GenralHospital</b></tr>
+          </table>
+        </div>
+        <div class="col-sm-3 statustables">
+          <h6>Assigned To List</h6>
+          <table class="table">
+            <tr>
+              <td>{{SupportCenterExecutive}}</td>
+            </tr>
+            
+          </table>
+         
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        
+
+        <div class="col-sm-3 statustables">
+          <h6>Request Details</h6>
+          <table class="table">
+            <tr><td>Hospital Availability</td></tr>
+            <tr >
+              <td>Surya</td>
+              <td>939098765</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3 statustables" >
+          <h6>Status</h6>
+          <table class="table">
+            <tr><td></td></tr>
+            <tr *ngFor="let status of StatusTrack">
+              <td>{{status.Status}}</td>
+              
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3 statustables" >
+          <h6>Status</h6>
+          <table class="table">
+            <tr><td></td></tr>
+            <tr *ngFor="let status of StatusTrack">
+              <td>{{status.Status}}</td>
+              
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        
+
+        <div class="col-sm-3 statustables">
+          <h6>Request Details</h6>
+          <table class="table">
+            <tr><td>Hospital Availability</td></tr>
+            <tr >
+              <td>Surya</td>
+              <td>939098765</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3 statustables" >
+          <h6>Status</h6>
+          <table class="table">
+            <tr><td></td></tr>
+            <tr *ngFor="let status of StatusTrack">
+              <td>{{status.Status}}</td>
+              
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3 statustables" >
+          <h6>Status</h6>
+          <table class="table">
+            <tr><td></td></tr>
+            <tr *ngFor="let status of StatusTrack">
+              <td>{{status.Status}}</td>
+              
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+     
+  </div>

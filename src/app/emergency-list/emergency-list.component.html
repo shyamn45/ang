@@ -1,0 +1,51 @@
+
+
+
+
+		<div style="overflow-x:auto;">
+		<table class="table gfg table-striped">
+			<thead>
+			  <tr >
+				<td scope="col" class="leftborder fontseven">PROFILE</td>
+				<td scope="col"></td>
+				<td scope="col" class="fontseven">NAME</td>
+				<td scope="col" class="fontseven">LOCATION</td>
+				<td scope="col" class="fontseven">CAREMANAGER</td>
+				<td scope="col" class="fontseven">Assigned</td>
+				<td scope="col" class="fontseven">IDENTIFIED</td>
+				<td scope="col" class="fontseven">Status</td>
+				<td scope="col" class="fontseven">TRIGGERED_TIME</td>
+				<td scope="col"></td>
+				<td scope="col" class="rightborder"></td>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let list of List" class="smallFont">
+				<td  class="leftborder" scope="row">
+					<img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80"
+					class="image--cover"></td>
+				
+				<td><img src="https://img.icons8.com/flat-round/64/000000/phone.png" style="width:23px;    margin-top: 83px;"></td>
+				<td class="fontseven mediumFont">{{list.Name}}
+					<div></div>
+				</td>
+				<td>{{list.City}}</td>
+				<td>{{list.CareManager}}</td>
+				<td>{{list.SupportCenterExecutive}}<img src="https://img.icons8.com/external-those-icons-fill-those-icons/10/000000/external-down-arrows-those-icons-fill-those-icons-7.png" class="downarrow" (click)="customerDetails(list)"/></td>
+				<td>{{list.RequestFrom}}</td>
+				<td>{{list.Status}}</td>
+				<td>{{list.RequestDateTime}}</td>
+				<td  id="emergencyconfirmationData" style="color: rgb(22, 189, 22);">
+					<span  (click)="acceptEmergency(list,'confirm')" *ngIf="list.Status=='EmergencyTrigger';else cnd"><img src="../../assets/images/icons8-checkmark-80.png" style="width: 50px;">
+					</span><ng-template  #cnd  >Accepted</ng-template></td>
+				<td class="rightborder"><span (click)="acceptEmergency(list,'ignore')"  *ngIf="list.Status=='EmergencyTrigger'"><img src="../../assets/images/icons8-close-64.png" style="width: 50px;"></span></td>
+
+
+			  </tr>
+			 
+			</tbody>
+		  </table>
+		  </div>
+	
+		
+	

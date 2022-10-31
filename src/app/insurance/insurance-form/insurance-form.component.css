@@ -1,0 +1,20 @@
+.spacediv{
+    height: 30px;
+}
+
+.validationcolor{
+  color: red;
+  font-size: small;
+}
+
+body{
+  overflow-y: hidden;
+}
+
+.inputpadding{
+  padding: 10px;
+}
+
+.image-upload>input {
+  display: none;
+}

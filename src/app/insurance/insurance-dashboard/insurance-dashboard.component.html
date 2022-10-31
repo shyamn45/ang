@@ -1,0 +1,250 @@
+<header id="main-header" class="py-2  text-purple">
+
+
+   <div class="row">
+      <div [class]='"col-md-2 col-sm-2 col-lg-2 col MemberTile member-"+this.lifeInsuranceScreen' (click)="onMembers()">
+         <!-- <div [class]='"member-"+this.lifeInsuranceScreen' > -->
+         <div>Life</div>
+         <div class="row ">
+         <div class="col-md-8"><img src="../../../assets/images/insurancePics/folder (3).png" class="memberImg"></div>
+         <div class="col-md-4"><h4>{{this.policylist.totalLifeInsuranceCount}}</h4></div>
+         </div>
+      </div>
+      <!-- <div [class]='"col-md-2 col-sm-2 col-lg-2 col FamileTile families-"+this.generalInsuranceScreen'
+         (click)="onFamilies()">
+         
+         <div>General</div>
+         <div><img src="../../../assets/images/insurancePics/folder (3).png" class="memberImg"></div>
+         <p>{{this.policylist.totalGeneralInsuranceCount}}</p>
+   
+      </div> -->
+   </div>
+
+</header>
+<!-- ACTIONS -->
+<section id="actions" class="py-4 mb-4 bg-light">
+   <div class="container">
+      <div class="card">
+         <div class="card-header">
+            <div class="row">
+               <div class="col-md-3">
+                  <a  id="insurance_type_life" class="btn btn-primary btn-block" data-id="life"
+                     data-toggle="modal" data-target="#addLife" (click)="lifeinsuranceForm()">
+                     <img src="../../../assets/images/insurancePics/add.png"> Life
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a  id="insurance_type_general" class="btn btn-success btn-block" data-id="general"
+                     data-toggle="modal" data-target="#addLife" (click)="generalInsurance()">
+                     <img src="../../../assets/images/insurancePics/add.png"> General
+                  </a>
+               </div>
+
+            </div>
+         </div>
+         <div class="card-body">
+            <div class="col-sm-12">
+               <form method="post">
+                  <div class="row">
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <input type="text" name="clientname_search" id="clientname_search" class="form-control"
+                              value="" placeholder="Enter client name">
+                        </div>
+                     </div>
+
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <input type="text" name="main_insurer_name" id="main_insurer_name" class="form-control"
+                              value="" placeholder="Insurer Name">
+                        </div>
+                     </div>
+                     <div class="col-sm-5">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <input type="date" class="fromDate form-control hasDatepicker" name="df" id="df" value=""
+                                 placeholder="Enter from date">
+                              <div class="input-group-prepend"><span class="input-group-text">-</span></div>
+                              <input type="date" class="toDate form-control hasDatepicker" name="dt" id="dt" value=""
+                                 placeholder="Enter to date">
+                              <div class="input-group-append"><span class="input-group-text"><a href="javascript:;"
+                                       onclick="$('#df,#dt').val('');"><i class="fa fa-fw fa-sync"></i></a></span></div>
+                           </div>
+                           <small class="text-primary font-weight-bold">Select date range</small>
+                        </div>
+
+                     </div>
+                     <div class="col-sm-3">
+                        <div class="form-group">
+                           <div>
+                              <button type="submit" name="submit" value="search" id="submit" class="btn btn-primary"><i
+                                    class="fa fa-fw fa-search"></i> Search</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</section>
+
+
+
+
+<div class="memberTableMaindiv" *ngIf="this.screen=='Totallifeinsurance'">
+   <!-- <table class="table table-striped ">
+      <thead>
+         <tr class="whitebackround">
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Plan</th>
+            <th>
+               <div>Start Date</div>
+               <div>End Date</div>
+            </th>
+
+         </tr>
+      </thead>
+      <tbody>
+         <tr scope="row">
+            <td style="color: #FF4112;">hrktjfgke</td>
+            <td>enrnjnerk</td>
+            <td>iefujv</td>
+            <td>kjfekjv</td>
+            <td>
+               <div>wjef</div>
+               <div>shd c</div>
+            </td>
+
+
+      </tbody>
+   </table> -->
+   <div class="card">
+      <div class="card-header">
+         <h4>LifeInsurance</h4>
+      </div>
+      <table class="table table-striped">
+         <thead class="bg-primary text-white">
+            <tr>
+               <th>#</th>
+               <th>Insurance ID</th>
+               <th>Policy Number</th>
+               <th>Client Name</th>
+               <th>Insurer Name</th>
+               <th>Product Type</th>
+               <th>Net Premium</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody *ngFor="let Health of lifeInsurance">
+            <tr>
+               <td></td>
+               <td (click)="details(Health)">{{Health.InsuranceID}}</td>
+               <td>{{Health.PolicyIssuedDetails.PolicyNumber}}</td>
+               <td>{{Health.ClientName}}</td>
+               <td>{{Health.MainInsurerDetails.MainInsurerName}}</td>
+               <td>{{Health.ProductType}}</td>
+               <td>{{Health.NetPremium}}</td>
+               <td></td>
+               <!-- <td style="text-align:center;" class="text-primary" colspan="7">No Record Found
+               </td> -->
+            </tr>
+
+         </tbody>
+      </table>
+      <div class="card-footer">
+         <!--Pagination code-->
+         <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+               <li class="page-item disabled ">
+                  <a class="page-link" href="insurance.php?toi=Life&amp;page=0">Previous</a>
+               </li>
+               <li class="page-item ">
+                  <a class="page-link" href="insurance.php?toi=Life&amp;page=2">Next</a>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</div>
+<div class="memberTableMaindiv" *ngIf="this.screen=='Generallifeinsurance'">
+   <!-- <table class="table table-striped " >
+            <thead>
+                <tr class="whitebackround">
+
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Plan</th>
+                    <th>
+                        <div>Start-Date</div>
+                        <div>End-Date</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row">
+                    <td style="color: #FF4112;">iweuifuw</td>
+                    <td>eirf</td>
+                    <td>eiruhf</td>
+                    <td>iurjf</td>
+                    <td>
+                        <div>hrbkerfv</div>
+                        <div>eirygfier</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+   <div class="card">
+      <div class="card-header">
+         <h4>GenerlInsurance</h4>
+      </div>
+      <table class="table table-striped">
+         <thead class="bg-primary text-white">
+            <tr>
+               <th>#</th>
+               <th>Policy Number</th>
+               <th>Client Name</th>
+               <th>Insurer Name</th>
+               <th>Product Type</th>
+               <th>Net Premium</th>
+               <th>Details</th>
+               
+            </tr>
+         </thead>
+         <tbody *ngFor="let GenralDetails of GeneralInsurance">
+            <tr>
+               <td></td>
+               <td>{{GenralDetails.PolicyIssuedDetails.PolicyNumber}}</td>
+               <td>{{GenralDetails.ClientName}}</td>
+               <td>{{GenralDetails.MainInsurerDetails.MainInsurerName}}</td>
+               <td>{{GenralDetails.ProductType}}</td>
+               <td>{{GenralDetails.NetPremium}}</td>
+               <td><button type="button" class="btn btn-secondary" >Details</button></td>
+            </tr>
+
+         </tbody>
+      </table>
+      <div class="card-footer">
+         <!--Pagination code-->
+         <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+               <li class="page-item disabled ">
+                  <a class="page-link" href="insurance.php?toi=Life&amp;page=0">Previous</a>
+               </li>
+               <li class="page-item ">
+                  <a class="page-link" href="insurance.php?toi=Life&amp;page=2">Next</a>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+</div>
+
+
+
+ 

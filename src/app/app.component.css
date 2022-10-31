@@ -1,0 +1,33 @@
+/* 
+
+.row {  
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .side {
+    flex: 1;
+    background-color: #f1f1f1;
+    
+  }
+
+  .main {
+    flex: 70%;
+    background-color: white;
+    
+  } */
+  body{
+    background-color: #f0f0f0 !important;
+      font-family: 'Poppins' !important;
+      font-size: 16px;
+
+  }
+
+  .bodycontent {
+    margin-top: 100px;
+    margin-left: 120px;
+    font-size: 20px;
+    font-family: 'Poppins' !important;
+  
+  }
+

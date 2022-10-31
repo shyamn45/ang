@@ -1,0 +1,81 @@
+/* @font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url(https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap);
+    
+  } */
+
+  @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+body{
+    font-family:'Poppins', sans-serif; 
+}
+
+
+body{
+    font-family: Poppins;
+}
+
+
+img {
+        border-radius: 50%;
+}
+ 
+        .wrapper {
+            max-width: min-content;
+
+}
+
+.image--cover {
+width: 65px;
+height: 70px;
+border: 1px solid;
+
+object-position: center right;
+}
+
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.content{
+    background-color: #D6D4D4;
+    margin: 0%;
+}
+
+th{
+    height: 153px;
+    vertical-align: middle;
+}
+
+.statustables{
+    background-color: #F2F2F2;
+    height: 250px;
+    margin: 15px;
+    border-radius: 17px;
+    overflow: overlay;
+}
+
+.contactedtables{
+        background-color: #F2F2F2;
+        height: 100px;
+        margin: 15px;
+        border-radius: 17px;
+        overflow: overlay;
+}
+
+.hospitaldiv{
+    overflow-wrap: anywhere;
+}
+.fontfour{
+    font-weight: 400;
+}
+h6{
+    text-align: -webkit-center;
+}
+
+.previousebutton{
+    text-align: initial;
+}
